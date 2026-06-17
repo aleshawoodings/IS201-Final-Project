@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swim Workout Generator</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#e8f4ff;
+    color:#1f2937;
+    padding:20px;
+    transition:.3s;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+    color:#1976d2;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+    margin-bottom:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+}
+
+label{
+    font-weight:bold;
+    display:block;
+    margin-bottom:5px;
+}
+
+select{
+    width:100%;
+    padding:10px;
+}
+
+button{
+    background:#42a5f5;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    margin:5px;
+}
+
+button:hover{
+    background:#1976d2;
+}
+
+pre{
+    white-space:pre-wrap;
+    line-height:1.6;
+}
+
+.dark{
+    background:#111827;
+    color:white;
+}
+
+.dark .card{
+    background:#1f2937;
+}
+
+@media(max-width:600px){
+    button{
+        width:100%;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🏊 Swim Workout Generator</h1>
+
+<div class="card">
+
+<div class="grid">
+
+<div>
+<label>Workout Distance</label>
+<select id="distance">
+<option value="1000">1000</option>
+<option value="1500">1500</option>
+<option value="2000">2000</option>
+<option value="2500">2500</option>
+<option value="3000">3000</option>
+<option value="4000">4000</option>
+<option value="5000">5000</option>
+</select>
+</div>
+
+<div>
+<label>Difficulty</label>
+<select id="difficulty">
+<option>Beginner</option>
+<option>Intermediate</option>
+<option>Advanced</option>
+</select>
+</div>
+
+<div>
+<label>Focus</label>
+<select id="focus">
+<option>Freestyle</option>
+<option>Backstroke</option>
+<option>Breaststroke</option>
+<option>Butterfly</option>
+<option>Sprinting</option>
+<option>Endurance</option>
+<option>IM</option>
+<option>All Around</option>
+</select>
+</div>
+
+<div>
+<label>Training Goal</label>
+<select id="goal">
+<option>General Fitness</option>
+<option>Competitive Swimming</option>
+<option>Sprint Specialist</option>
+<option>Distance Specialist</option>
+<option>Triathlon</option>
+<option>Masters Swimming</option>
+<option>Stroke Development</option>
+<option>IM Training</option>
+</select>
+</div>
+
+</div>
+
+<br>
+
+<button onclick="generateWorkout()">
+Generate Workout
+</button>
+
+<button onclick="generateWeeklyPlan()">
+Weekly Plan
+</button>
+
+<button onclick="generateMonthlyPlan()">
+Monthly Plan
+</button>
+
+<button onclick="exportPDF()">
+Export PDF
+</button>
+
+<button onclick="toggleDarkMode()">
+Dark Mode
+</button>
+
+</div>
+
+<div class="card">
+<h2>Workout Output</h2>
+<pre id="output"></pre>
+</div>
+
+</div>
+
+<script>
+
+let currentPlan = "";
+
+const restTimes = {
+    Beginner: "30-45 sec",
+    Intermediate: "15-30 sec",
+    Advanced: "10-20 sec"
+};
+
+const focusSets = {
+
+Freestyle:[
+"10 x 100 Free",
+"8 x 50 Free Descend",
+"5 x 200 Free Moderate"
+],
+
+Backstroke:[
+"8 x 50 Back",
+"4 x 100 Back Build",
+"12 x 25 Fast Back",
+"4 x 50 Back Drill"
+],
+
+Breaststroke:[
+"8 x 50 Breast Drill",
+"6 x 100 Breast",
+"12 x 25 Sprint Breast"
+],
+
+Butterfly:[
+"8 x 25 Fly Drill",
+"6 x 50 Fly Strong",
+"4 x 100 IM"
+],
+
+Sprinting:[
+"20 x 25 Sprint",
+"12 x 50 Fast",
+"8 x 25 All Out",
+"8 x 50 Intervals on the minute"
+],
+
+Endurance:[
+"3 x 500 Steady",
+"5 x 300 Moderate",
+"1000 Continuous Swim"
+],
+
+IM:[
+"8 x 100 IM",
+"4 x 200 IM",
+"16 x 25 Stroke Order",
+"4 x 100 IM Drill"
+],
+
+"All Around":[
+"4 x 100 Choice",
+"8 x 50 Stroke Rotate",
+"200 IM + 4 x 50 Free"
+]
+
+};
+
+function randomItem(array){
+    return array[Math.floor(Math.random()*array.length)];
+}
+
+function generateWorkout(){
+
+    let distance = Number(
+        document.getElementById("distance").value
+    );
+
+    let difficulty =
+        document.getElementById("difficulty").value;
+
+    let focus =
+        document.getElementById("focus").value;
+
+    let goal =
+        document.getElementById("goal").value;
+
+    let warmup = Math.round(distance * .20);
+    let main = Math.round(distance * .70);
+    let cooldown = distance - warmup - main;
+
+    currentPlan =
+
+`SWIM WORKOUT
+
+Goal:
+${goal}
+
+Focus:
+${focus}
+
+Difficulty:
+${difficulty}
+
+Total Distance:
+${distance} yards
+
+------------------------
+
+WARM-UP (${warmup})
+
+200 Easy Swim
+100 Kick
+100 Pull
+4 x 25 Build
+
+------------------------
+
+MAIN SET (${main})
+
+${randomItem(focusSets[focus])}
+
+Suggested Rest:
+${restTimes[difficulty]}
+
+------------------------
+
+COOL DOWN (${cooldown})
+
+100 Easy
+100 Choice/IM
+
+------------------------
+
+Estimated Time:
+${Math.round(distance/55)} minutes
+`;
+
+document.getElementById("output").textContent =
+currentPlan;
+
+}
+
+function generateWeeklyPlan(){
+
+const focuses = [
+"Freestyle",
+"Sprinting",
+"Recovery",
+"Endurance",
+"IM",
+"Distance",
+"Rest Day"
+];
+
+currentPlan =
+`WEEKLY TRAINING PLAN
+
+Monday:
+${focuses[0]}
+
+Tuesday:
+${focuses[1]}
+
+Wednesday:
+${focuses[2]}
+
+Thursday:
+${focuses[3]}
+
+Friday:
+${focuses[4]}
+
+Saturday:
+${focuses[5]}
+
+Sunday:
+${focuses[6]}
+`;
+
+document.getElementById("output").textContent =
+currentPlan;
+
+}
+
+function generateMonthlyPlan(){
+
+currentPlan =
+`MONTHLY TRAINING PLAN
+
+Week 1
+Base Training
+
+Week 2
+Increase Volume 10%
+
+Week 3
+Increase Volume 20%
+
+Week 4
+Recovery Week
+Reduce Volume 25%
+`;
+
+document.getElementById("output").textContent =
+currentPlan;
+
+}
+
+async function exportPDF(){
+
+const { jsPDF } = window.jspdf;
+
+const pdf = new jsPDF();
+
+pdf.text(
+currentPlan || "Generate a plan first.",
+10,
+10
+);
+
+pdf.save("swim-plan.pdf");
+
+}
+
+function toggleDarkMode(){
+
+document.body.classList.toggle("dark");
+
+}
+
+generateWorkout();
+
+</script>
+
+</body>
+</html>

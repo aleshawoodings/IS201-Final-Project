@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alesha Woodings | Resume</title>
+
+<style>
+:root{
+    --primary:#6bb6ff;
+    --primary-light:#eaf5ff;
+    --text:#243447;
+    --muted:#667788;
+    --border:#e5edf5;
+    --background:#f8fbff;
+    --white:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:var(--background);
+    color:var(--text);
+    line-height:1.7;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 24px;
+}
+
+.hero{
+    background:linear-gradient(135deg, #ffffff, #eef7ff);
+    border-radius:24px;
+    padding:60px;
+    margin-bottom:32px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.hero h1{
+    font-size:3rem;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.hero p{
+    font-size:1.1rem;
+    color:var(--muted);
+    max-width:700px;
+}
+
+.badges{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:24px;
+}
+
+.badge{
+    background:var(--primary-light);
+    color:#2563a7;
+    padding:10px 16px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:.9rem;
+}
+
+.section{
+    margin-bottom:32px;
+}
+
+.card{
+    background:var(--white);
+    border-radius:20px;
+    padding:32px;
+    box-shadow:0 8px 25px rgba(0,0,0,.04);
+}
+
+.section-title{
+    font-size:1.6rem;
+    margin-bottom:24px;
+    color:#205f9c;
+}
+
+.education-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+}
+
+.education-item{
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:24px;
+}
+
+.education-item h3{
+    margin-bottom:8px;
+}
+
+.highlight{
+    color:#1d74c4;
+    font-weight:600;
+}
+
+.timeline{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+
+.job{
+    border-left:4px solid var(--primary);
+    padding-left:20px;
+}
+
+.job-header{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:8px;
+}
+
+.job-title{
+    font-size:1.1rem;
+    font-weight:700;
+}
+
+.job-company{
+    color:#1d74c4;
+    font-weight:600;
+}
+
+.date{
+    color:var(--muted);
+    font-size:.95rem;
+}
+
+.job ul{
+    padding-left:18px;
+    color:#445566;
+}
+
+.about{
+    font-size:1.05rem;
+    color:#445566;
+}
+
+.footer{
+    text-align:center;
+    color:var(--muted);
+    padding:30px 0;
+}
+
+@media (max-width:768px){
+
+    .hero{
+        padding:40px 28px;
+    }
+
+    .hero h1{
+        font-size:2.2rem;
+    }
+
+    .education-grid{
+        grid-template-columns:1fr;
+    }
+
+    .job-header{
+        flex-direction:column;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <section class="hero">
+        <h1>Alesha Woodings</h1>
+
+        <p>
+            Brigham Young University Pre-Business student, with a strong academic record,
+            scholarship achievements, and extensive tutoring experience. Passionate about
+            helping others succeed, building meaningful relationships, and developing
+            leadership through service, education, and mentorship.
+        </p>
+
+        <div class="badges">
+            <div class="badge">BYU Academic Scholarship Recipient</div>
+            <div class="badge">HS Math Peer Tutor</div>
+            <div class="badge">CRLA Level 1 Certified</div>
+            <div class="badge">Missionary Leadership Experience</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="card">
+            <h2 class="section-title">Education</h2>
+
+            <div class="education-grid">
+
+                <div class="education-item">
+                    <h3>Brigham Young University</h3>
+                    <p><strong>Pre-Business- Accounting</strong></p>
+                    <p>2023 – Present</p>
+                    <p>3.90 GPA</p>
+
+                    <br>
+
+                    <p class="highlight">
+                        Full Tuition Academic Scholarship (2026)
+                    </p>
+
+                    <p class="highlight">
+                        Half Tuition Academic Scholarship (2023–2024)
+                    </p>
+                </div>
+
+                <div class="education-item">
+                    <h3>Canyon del Oro High School</h3>
+                    <p>Class of 2023</p>
+
+                    <br>
+
+                    <p><strong>Unweighted GPA:</strong> 3.98</p>
+                    <p>Principal's Honor Roll (2019–2023)</p>
+
+                    <br>
+
+                    <p>
+                        Advanced Placement coursework in World History,
+                        Biology, Chemistry, English Language & Composition,
+                        Calculus AB, United States History, and Statistics.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="card">
+            <h2 class="section-title">Professional Summary</h2>
+
+            <p class="about">
+                My experience centers on education, mentorship, and service. Through tutoring,
+                missionary work, coaching, and leadership opportunities, I have developed strong
+                communication, problem-solving, and interpersonal skills. I enjoy helping others
+                achieve their goals and creating positive learning environments where students can
+                build confidence and succeed.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="card">
+            <h2 class="section-title">Experience</h2>
+
+            <div class="timeline">
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">HS Math Peer Tutor</div>
+                            <div class="job-company">BYU Student Success Center</div>
+                        </div>
+                        <div class="date">Jan 2026 – Present</div>
+                    </div>
+
+                    <ul>
+                        <li>Tutor students one-on-one across multiple mathematics courses.</li>
+                        <li>Communicate with students and parents through email correspondence.</li>
+                        <li>Participate in biweekly student outreach and academic support efforts.</li>
+                        <li>CRLA Level 1 Certified; pursuing CRLA Level 2 Certification.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Missionary</div>
+                            <div class="job-company">The Church of Jesus Christ of Latter-day Saints</div>
+                        </div>
+                        <div class="date">May 2024 – Dec 2025</div>
+                    </div>
+
+                    <ul>
+                        <li>Served as a full-time missionary in the Maryland Baltimore Mission.</li>
+                        <li>Developed leadership, communication, and relationship-building skills.</li>
+                        <li>Worked with individuals from diverse backgrounds and circumstances.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Tutor</div>
+                            <div class="job-company">The Tutoring Center, Oro Valley</div>
+                        </div>
+                        <div class="date">Fall 2022</div>
+                    </div>
+
+                    <ul>
+                        <li>Tutored elementary and middle school students in Math, English, and Reading.</li>
+                        <li>Helped students strengthen academic fundamentals and study habits.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Gymnastics Coach</div>
+                            <div class="job-company">Heart and Soul Kids Activity Center</div>
+                        </div>
+                        <div class="date">May 2021 – Aug 2023</div>
+                    </div>
+
+                    <ul>
+                        <li>Coached children ages 4–12 in gymnastics and skill development.</li>
+                        <li>Built confidence, discipline, and teamwork among students.</li>
+                        <li>Assisted in organizing and leading full-day youth camps.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Cleaning Specialist</div>
+                            <div class="job-company">Woodings Legacy Investments LLC</div>
+                        </div>
+                        <div class="date">Oct 2022 – May 2024</div>
+                    </div>
+
+                    <ul>
+                        <li>Maintained short-term rental properties to high hospitality standards.</li>
+                        <li>Consistently contributed to 5-star cleanliness ratings.</li>
+                        <li>Worked independently and collaboratively to meet deadlines.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="card">
+            <h2 class="section-title">Leadership & Activities</h2>
+
+            <div class="timeline">
+
+                <div class="job">
+                    <div class="job-title">Canyon del Oro High School Dance Company</div>
+                    <p>
+                        Collaborated in choreography, teaching, rehearsals, costume preparation,
+                        and stage production for semi-annual performances from 2019–2023.
+                    </p>
+                </div>
+
+                <div class="job">
+                    <div class="job-title">Canyon del Oro High School Swim Team</div>
+                    <p>
+                        Competed during the 2020 and 2022 seasons, demonstrating perseverance,
+                        discipline, and continuous improvement.
+                    </p>
+                </div>
+
+                <div class="job">
+                    <div class="job-title">Competitive Gymnastics</div>
+                    <p>
+                        Trained approximately nine hours weekly while competing in the Xcel
+                        Bronze and Silver programs, developing resilience and goal-setting skills.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        © 2026 Alesha Woodings
+    </div>
+
+</div>
+
+</body>
+</html>
